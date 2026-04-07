@@ -10,7 +10,7 @@ interface Product {
   };
 }
 
-export default function ProductCard({ product }: { product: Product }) {
+export default function ProductCard({ product }: { product: any }) {
   return (
     <div className="border rounded-2xl overflow-hidden hover:shadow-xl transition-shadow">
       <div className="relative h-48 bg-gray-100">
