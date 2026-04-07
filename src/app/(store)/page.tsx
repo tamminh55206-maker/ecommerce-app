@@ -10,13 +10,13 @@ export default async function HomePage() {
 
   return (
     <div>
-      {/* Hero Section */}
+      {/* Hero */}
       <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white py-24 text-center">
         <h1 className="text-6xl font-bold mb-4">Chào mừng đến Shop</h1>
         <p className="text-2xl mb-8">Sản phẩm chất lượng - Giá tốt nhất</p>
         <a
           href="/products"
-          className="inline-block bg-white text-black px-10 py-5 rounded-2xl text-xl font-semibold hover:bg-gray-100 transition"
+          className="inline-block bg-white text-black px-10 py-5 rounded-2xl text-xl font-semibold hover:bg-gray-100"
         >
           Xem tất cả sản phẩm
         </a>
@@ -32,7 +32,7 @@ export default async function HomePage() {
               key={product.id}
               product={{
                 ...product,
-                price: Number(product.price),           // ← Fix Decimal → number
+                price: Number(product.price),     // ← Đây là dòng fix Decimal
               }}
             />
           ))}
