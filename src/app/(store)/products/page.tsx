@@ -34,7 +34,7 @@ export default async function ProductsPage({
       <div className="flex gap-8">
         <ProductFilters />
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 flex-1">
-          {products.map((product) => (
+          {products.map((product: typeof products[number]) => (
             <ProductCard key={product.id} product={product} />
           ))}
         </div>

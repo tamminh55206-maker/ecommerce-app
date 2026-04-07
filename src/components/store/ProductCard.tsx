@@ -1,7 +1,16 @@
 import Image from 'next/image';
 import { ShoppingCart } from 'lucide-react';
 
-export default function ProductCard({ product }: { product: any }) {
+interface Product {
+  images?: string[];
+  name: string;
+  price: number | string;
+  category?: {
+    name: string;
+  };
+}
+
+export default function ProductCard({ product }: { product: Product }) {
   return (
     <div className="border rounded-2xl overflow-hidden hover:shadow-xl transition-shadow">
       <div className="relative h-48 bg-gray-100">

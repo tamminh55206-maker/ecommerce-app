@@ -2,18 +2,23 @@ import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
 import Stripe from 'stripe'
 
+interface CartItem {
+  productId: string
+  quantity: number
+}
+
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!)
 
 export async function POST(req: NextRequest) {
-  const { items, email } = await req.json()
+  const { items, email } = await req.json() as { items: CartItem[]; email: string }
 
   const products = await prisma.product.findMany({
-    where: { id: { in: items.map((i: any) => i.productId) } },
+    where: { id: { in: items.map((i: CartItem) => i.productId) } },
   })
 
   const session = await stripe.checkout.sessions.create({
     payment_method_types: ['card'],
-    line_items: items.map((item: any) => {
+    line_items: items.map((item: CartItem) => {
       const product = products.find(p => p.id === item.productId)!
       return {
         price_data: {
